@@ -54,6 +54,18 @@ noremap <Right> <nop>
 set smartindent
 set autoindent
 
+" Text formatting options
+set formatoptions=      " Reset format options
+set formatoptions+=t    " Auto-wrap using textwidth
+set formatoptions+=c    " Auto-wrap comments, add leader
+set formatoptions+=r    " Automatically add comment leader on \n
+set formatoptions+=o    " Automatically add comment leader on Oo
+set formatoptions+=q    " Format comments when using gq
+set formatoptions+=a    " Autoformat paragraphs (only comments)
+set formatoptions+=n    " Autoformat lists
+set formatoptions+=2    " Use indent of second line of paragraph
+set formatoptions+=j    " Remove comment leader when joining lines
+
 " Tab settings
 set tabstop=4
 set shiftwidth=4
