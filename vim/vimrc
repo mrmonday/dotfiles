@@ -35,10 +35,11 @@ endif
 " Line endings
 set fileformats=unix,dos
 
-" Line numbers
+" Line numbers/status
 set number
 set numberwidth=3
 set ruler
+set showcmd
 
 " Learn to vim properly
 set mouse=a " I failed.
@@ -58,6 +59,10 @@ set shiftwidth=4
 set expandtab
 set backspace=indent,eol,start
 set softtabstop=4
+
+" Highlight tabs and trailing whitespace
+set listchars=tab:>-,trail:~
+set list
 
 " Better searching
 set incsearch
