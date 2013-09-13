@@ -81,6 +81,11 @@ set wildignore+=.*.swp,.*.swo,*~
 " No need for a swap file
 set noswapfile
 
+" Allow undoing across sessions
+if has('persistent_undo')
+    set undofile
+endif
+
 " No splash
 set shortmess+=I
 
@@ -88,7 +93,7 @@ set shortmess+=I
 set lazyredraw
 
 " Make the delay for Insert -> Command less noticable
-" Eg. Multi-line editting and <Esc>O
+" Eg. Multi-line editing and <Esc>O
 set timeoutlen=1000
 set ttimeoutlen=100
 
