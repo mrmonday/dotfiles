@@ -170,6 +170,7 @@ if v:version >= 704 || (v:version == 703 && has('patch584'))
         \ 'markdown'    : 1,
         \ 'text'        : 1,
         \ 'conque_term' : 1,
+        \ 'gitcommit'   : 1,
     \}
 else
     set runtimepath+=~/.vim/dfplugins/supertab
