@@ -10,3 +10,6 @@
 [submodule "vim/plugins/javacomplete"]
 	path = vim/plugins/javacomplete
 	url = git@github.com:vim-scripts/javacomplete.git
+[submodule "vim/plugins/conque"]
+	path = vim/plugins/conque
+	url = git@github.com:rosenfeld/conque-term.git
