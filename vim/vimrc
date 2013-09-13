@@ -115,6 +115,21 @@ autocmd FileType * let b:SuperTabDisabled=1
 set pumheight=7
 set completeopt=longest,menu,preview
 
+" Autocomplete for java
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
+autocmd FileType java let b:SuperTabDisabled=0
+
+" Make sure Makefiles actually work
+autocmd FileType make setl noexpandtab
+
+" PHP Settings
+let php_sql_query = 1
+let php_htmlInStrings = 1
+
+" SQL Settings
+let g:sql_type_default = 'mysql'
+
 " Tex settings
 autocmd BufRead *.tex setl spell
 autocmd BufRead *.tex setl textwidth=79
@@ -124,21 +139,3 @@ else
     " TODO This should use tw rather than being hard coded to 79
     autocmd BufRead,BufNewFile *.tex syntax match ErrorMsg /\%>79v.\+/
 endif
-
-" Make sure Makefiles actually work
-autocmd FileType make setl noexpandtab
-
-" Autocomplete for java
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
-autocmd FileType java let b:SuperTabDisabled=0
-
-" PHP Settings
-let php_sql_query = 1
-let php_htmlInStrings = 1
-
-" SQL Settings
-let g:sql_type_default = 'mysql'
-
-"unrelated, not so useful
-"let $VIMSERVERNAME = v:servername
