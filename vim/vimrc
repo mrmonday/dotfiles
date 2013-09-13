@@ -1,0 +1,139 @@
+set nocompatible
+
+" Syntax hilighting
+syn on
+set background=dark
+colorscheme solarized
+
+" GUI stuff
+if has("gui_running")
+    " Get rid of GUI crap
+    set guioptions=
+
+    " Context-sensitive right click
+    set mousemodel=popup_setpos
+
+    "set columns=100
+
+    " Remap F1 to Esc
+    map <F1> <Esc>
+    imap <F1> <Esc>
+
+
+    " Windows specific settings
+    if has('win32')
+        " Use a better font
+        set guifont=Consolas:h11:cANSI
+
+        " Maximise window, unless told otherwise
+        if !exists('g:no_maximize')
+            au GUIEnter * simalt ~x
+        endif
+    endif
+endif
+
+" Line endings
+set fileformats=unix,dos
+
+" Line numbers
+set number
+set numberwidth=3
+set ruler
+
+" Learn to vim properly
+set mouse=a " I failed.
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+" TODO Get rid of <Esc>
+
+" Indentation
+set smartindent
+set autoindent
+
+" Tab settings
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set backspace=indent,eol,start
+set softtabstop=4
+
+" Better searching
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+" Better tab complete for files
+set wildmenu
+set wildmode=list:longest
+set wildignore+=.metadata,.classpath,.project,.settings
+set wildignore+=*.slo,*.lo,*.a,*.o,*.lai,*.a
+set wildignore+=*.class,*.tokens,*.aux,*.log,*.pdf,*.toc
+set wildignore+=.*.swp,.*.swo,*~
+
+" No need for a swap file
+set noswapfile
+
+" No splash
+set shortmess+=I
+
+" Don't redraw during macros
+set lazyredraw
+
+" Make the delay for Insert -> Command less noticable
+" Eg. Multi-line editting and <Esc>O
+set timeoutlen=1000
+set ttimeoutlen=100
+
+" Folding
+set foldmethod=manual
+
+" Rewrite typo'd commands
+command! -bang -nargs=? -complete=file W w<bang> <args>
+command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+command! -bang Q q<bang>
+command! -bang Qa qa<bang>
+
+" Conque settings
+command! Tt ConqueTermTab zsh
+command! Tv ConqueTermVSplit zsh
+command! Ts ConqueTermSplit zsh
+
+let g:ConqueTerm_InsertOnEnter = 1
+let g:ConqueTerm_ReadUnfocused = 1
+
+" Supertab settings
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+autocmd FileType * let b:SuperTabDisabled=1 
+set pumheight=7
+set completeopt=longest,menu,preview
+
+" Tex settings
+autocmd BufRead *.tex setl spell
+autocmd BufRead *.tex setl textwidth=79
+if exists('+colorcolumn')
+    autocmd BufRead *.tex setl colorcolumn=+1
+else
+    " TODO This should use tw rather than being hard coded to 79
+    autocmd BufRead,BufNewFile *.tex syntax match ErrorMsg /\%>79v.\+/
+endif
+
+" Make sure Makefiles actually work
+autocmd FileType make setl noexpandtab
+
+" Autocomplete for java
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
+autocmd FileType java let b:SuperTabDisabled=0
+
+" PHP Settings
+let php_sql_query = 1
+let php_htmlInStrings = 1
+
+" SQL Settings
+let g:sql_type_default = 'mysql'
+
+"unrelated, not so useful
+"let $VIMSERVERNAME = v:servername
