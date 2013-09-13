@@ -1,3 +1,12 @@
 [submodule "vim/plugins/syntastic"]
 	path = vim/plugins/syntastic
 	url = git@github.com:scrooloose/syntastic.git
+[submodule "vim/plugins/YouCompleteMe"]
+	path = vim/plugins/YouCompleteMe
+	url = git@github.com:Valloric/YouCompleteMe.git
+[submodule "vim/plugins/supertab"]
+	path = vim/plugins/supertab
+	url = git@github.com:ervandew/supertab.git
+[submodule "vim/plugins/javacomplete"]
+	path = vim/plugins/javacomplete
+	url = git@github.com:vim-scripts/javacomplete.git

@@ -19,7 +19,6 @@ if has("gui_running")
     map <F1> <Esc>
     imap <F1> <Esc>
 
-
     " Windows specific settings
     if has('win32')
         " Use a better font
@@ -114,19 +113,15 @@ command! Ts ConqueTermSplit zsh
 let g:ConqueTerm_InsertOnEnter = 1
 let g:ConqueTerm_ReadUnfocused = 1
 
-" Supertab settings
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-autocmd FileType * let b:SuperTabDisabled=1 
+
+" Autocompletion settings
 set pumheight=7
 set completeopt=longest,menu,preview
 
 " Git commit settings
 autocmd FileType gitcommit setlocal tw=79
 
-" Autocomplete for java
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
-autocmd FileType java let b:SuperTabDisabled=0
+
 
 " Make sure Makefiles actually work
 autocmd FileType make setl noexpandtab
@@ -148,9 +143,29 @@ else
     autocmd BufRead,BufNewFile *.tex syntax match ErrorMsg /\%>79v.\+/
 endif
 
-if v:version > 700
+" Syntax/etc checking
+if v:version >= 700
     set runtimepath+=~/.vim/dfplugins/syntastic
     let g:syntastic_check_on_open=1
     let g:syntastic_auto_loc_list=1
     let g:syntastic_loc_list_height=3
+endif
+
+" Auto-completion.
+" If using a recent enough version of vim, use YouCompleteMe
+" Otherwise fallback to supertab and only support Java
+if v:version >= 704 || (v:version == 703 && has('patch584'))
+    set runtimepath+=~/.vim/dfplugins/YouCompleteMe
+else
+    set runtimepath+=~/.vim/dfplugins/supertab
+    set runtimepath+=~/.vim/dfplugins/javacomplete
+
+    " Supertab settings
+    let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+    autocmd FileType * let b:SuperTabDisabled=1
+
+    " Autocomplete for java
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
+    autocmd FileType java let b:SuperTabDisabled=0
 endif
