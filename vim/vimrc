@@ -105,23 +105,12 @@ command! -bang -nargs=? -complete=file Wq wq<bang> <args>
 command! -bang Q q<bang>
 command! -bang Qa qa<bang>
 
-" Conque settings
-command! Tt ConqueTermTab zsh
-command! Tv ConqueTermVSplit zsh
-command! Ts ConqueTermSplit zsh
-
-let g:ConqueTerm_InsertOnEnter = 1
-let g:ConqueTerm_ReadUnfocused = 1
-
-
 " Autocompletion settings
 set pumheight=7
 set completeopt=longest,menu,preview
 
 " Git commit settings
 autocmd FileType gitcommit setlocal tw=79
-
-
 
 " Make sure Makefiles actually work
 autocmd FileType make setl noexpandtab
@@ -149,6 +138,25 @@ if v:version >= 700
     let g:syntastic_check_on_open=1
     let g:syntastic_auto_loc_list=1
     let g:syntastic_loc_list_height=3
+
+    " Autocomplete for java
+    set runtimepath+=~/.vim/dfplugins/javacomplete
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
+
+    if has('python')
+        set runtimepath+=~/.vim/dfplugins/conque
+
+        " Conque settings
+        command! Tt ConqueTermTab zsh
+        command! Tv ConqueTermVSplit zsh
+        command! Ts ConqueTermSplit zsh
+
+        autocmd FileType conque_term setl nolist
+
+        let g:ConqueTerm_InsertOnEnter = 1
+        let g:ConqueTerm_ReadUnfocused = 1
+    endif
 endif
 
 " Auto-completion.
@@ -156,16 +164,21 @@ endif
 " Otherwise fallback to supertab and only support Java
 if v:version >= 704 || (v:version == 703 && has('patch584'))
     set runtimepath+=~/.vim/dfplugins/YouCompleteMe
+
+    let g:ycm_filetype_blacklist={
+        \ 'notes'       : 1,
+        \ 'markdown'    : 1,
+        \ 'text'        : 1,
+        \ 'conque_term' : 1,
+    \}
 else
     set runtimepath+=~/.vim/dfplugins/supertab
-    set runtimepath+=~/.vim/dfplugins/javacomplete
 
     " Supertab settings
     let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
     autocmd FileType * let b:SuperTabDisabled=1
 
-    " Autocomplete for java
-    autocmd FileType java setlocal omnifunc=javacomplete#Complete
-    autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
+    " Enable tab complete for java
     autocmd FileType java let b:SuperTabDisabled=0
+
 endif
