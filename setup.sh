@@ -54,6 +54,16 @@ install_config() {
 }
 
 ##
+# Install vim plugins
+##
+install_vim_plugins() {
+    mkdir -p ~/.vim/dfplugins/
+    for dir in $(ls vim/plugins); do
+        ln -s `pwd`/vim/plugins/$dir ~/.vim/dfplugins/$dir
+    done
+}
+
+##
 # Prompt the user to install each config file
 ##
 for app in "${!config_files[@]}"; do
@@ -62,3 +72,11 @@ for app in "${!config_files[@]}"; do
         install_config $app
     fi
 done
+
+##
+# Vim plugins
+##
+should_install 'vim plugins'
+if (( $? == 1 )); then
+    install_vim_plugins
+fi
