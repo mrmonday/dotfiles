@@ -87,6 +87,9 @@ install_vim_plugin_conf() {
     done
 }
 
+echo Updating submodules...
+git submodule update --init --recursive
+
 ##
 # Prompt the user to install each config file
 ##
@@ -102,6 +105,11 @@ done
 ##
 should_install 'vim plugins'
 if (( $? == 1 )); then
+    # Compile YouCompleteMe with clang and C# support
+    if [[ -e vim/plugins/YouCompleteMe ]]; then
+        cd vim/plugins/YouCompleteMe
+        ./install.sh --clang-completer --omnisharp-completer
+    fi
     install_vim_plugins
     install_vim_plugin_conf
 fi
