@@ -134,8 +134,8 @@ else
     autocmd BufRead,BufNewFile *.tex syntax match ErrorMsg /\%>79v.\+/
 endif
 
-" Syntax/etc checking
 if v:version >= 700
+    " Syntax/etc checking
     set runtimepath+=~/.vim/dfplugins/syntastic
     let g:syntastic_check_on_open=1
     let g:syntastic_auto_loc_list=1
@@ -147,9 +147,9 @@ if v:version >= 700
     autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
 
     if has('python')
+        " Conque settings
         set runtimepath+=~/.vim/dfplugins/conque
 
-        " Conque settings
         command! Tt ConqueTermTab zsh
         command! Tv ConqueTermVSplit zsh
         command! Ts ConqueTermSplit zsh
