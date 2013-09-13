@@ -61,7 +61,6 @@ set formatoptions+=c    " Auto-wrap comments, add leader
 set formatoptions+=r    " Automatically add comment leader on \n
 set formatoptions+=o    " Automatically add comment leader on Oo
 set formatoptions+=q    " Format comments when using gq
-set formatoptions+=a    " Autoformat paragraphs (only comments)
 set formatoptions+=n    " Autoformat lists
 set formatoptions+=2    " Use indent of second line of paragraph
 set formatoptions+=j    " Remove comment leader when joining lines
@@ -87,9 +86,9 @@ set smartcase
 set wildmenu
 set wildmode=list:longest
 set wildignore+=.metadata,.classpath,.project,.settings
-set wildignore+=*.slo,*.lo,*.a,*.o,*.lai,*.a
+set wildignore+=*.slo,*.lo,*.a,*.o,*.lai,*.a,*.dll,*.obj
 set wildignore+=*.class,*.tokens,*.aux,*.log,*.pdf,*.toc
-set wildignore+=.*.swp,.*.swo,*~
+set wildignore+=.*.swp,.*.swo,*~,*.pyc,*.pyo
 
 " No need for a swap file
 set noswapfile
