@@ -1,5 +1,5 @@
 [core]
-    editor = git diff --cached > $GIT_DIR/tmpdiff && vim $GIT_DIR/tmpdiff '+set buftype=help filetype=diff' "+vsplit $1" '+set tw=79' '+vertical res 80' '+next' && true 
+    editor = git diff --cached > $GIT_DIR/tmpdiff && vim $GIT_DIR/tmpdiff '+set buftype=help filetype=diff' "+vsplit $1" '+vertical res 80' '+next' && true 
 [user]
     name = Robert Clipsham
     email = robert@octarineparrot.com

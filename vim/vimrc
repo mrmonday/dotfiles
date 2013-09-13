@@ -115,6 +115,9 @@ autocmd FileType * let b:SuperTabDisabled=1
 set pumheight=7
 set completeopt=longest,menu,preview
 
+" Git commit settings
+autocmd FileType gitcommit setlocal tw=79
+
 " Autocomplete for java
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
