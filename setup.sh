@@ -59,7 +59,14 @@ install_config() {
 install_vim_plugins() {
     mkdir -p ~/.vim/dfplugins/
     for dir in $(ls vim/plugins); do
-        ln -s `pwd`/vim/plugins/$dir ~/.vim/dfplugins/$dir
+        target=$(pwd)/vim/plugins/$dir
+        link_name=~/.vim/dfplugins/$dir
+
+        # Delete the symlink if it already exists
+        if [[ -h $link_name ]]; then
+            rm $link_name
+        fi
+        ln -s $target $link_name
     done
 }
 
