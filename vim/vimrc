@@ -1,6 +1,8 @@
 set nocompatible
 
 " Syntax hilighting
+set runtimepath+=~/.vim/dfplugins/vim-colors-solarized
+
 syn on
 set background=dark
 colorscheme solarized

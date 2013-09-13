@@ -13,3 +13,6 @@
 [submodule "vim/plugins/conque"]
 	path = vim/plugins/conque
 	url = git@github.com:rosenfeld/conque-term.git
+[submodule "vim/plugins/vim-colors-solarized"]
+	path = vim/plugins/vim-colors-solarized
+	url = git@github.com:altercation/vim-colors-solarized.git
