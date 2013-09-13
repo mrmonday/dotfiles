@@ -71,6 +71,23 @@ install_vim_plugins() {
 }
 
 ##
+# Install vim plugin configuration
+##
+install_vim_plugin_conf() {
+    mkdir -p ~/.vim/dfconf/
+    for dir in $(ls vim/conf); do
+        target=$(pwd)/vim/conf/$dir
+        link_name=~/.vim/dfconf/$dir
+
+        # Delete the symlink if it already exists
+        if [[ -h $link_name ]]; then
+            rm $link_name
+        fi
+        ln -s $target $link_name
+    done
+}
+
+##
 # Prompt the user to install each config file
 ##
 for app in "${!config_files[@]}"; do
@@ -86,4 +103,5 @@ done
 should_install 'vim plugins'
 if (( $? == 1 )); then
     install_vim_plugins
+    install_vim_plugin_conf
 fi

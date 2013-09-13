@@ -167,6 +167,7 @@ endif
 " Otherwise fallback to supertab and only support Java
 if v:version >= 704 || (v:version == 703 && has('patch584'))
     set runtimepath+=~/.vim/dfplugins/YouCompleteMe
+    let g:ycm_global_ycm_extra_conf = '~/.vim/dfconf/YouCompleteMe/ycm_global.py'
 
     let g:ycm_filetype_blacklist={
         \ 'notes'       : 1,
