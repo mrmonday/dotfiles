@@ -179,16 +179,18 @@ endif
 " If using a recent enough version of vim, use YouCompleteMe
 " Otherwise fallback to supertab and only support Java
 if v:version >= 704 || (v:version == 703 && has('patch584'))
-    set runtimepath+=~/.vim/dfplugins/YouCompleteMe
-    let g:ycm_global_ycm_extra_conf = '~/.vim/dfconf/YouCompleteMe/ycm_global.py'
+    if has('python')
+        set runtimepath+=~/.vim/dfplugins/YouCompleteMe
+        let g:ycm_global_ycm_extra_conf = '~/.vim/dfconf/YouCompleteMe/ycm_global.py'
 
-    let g:ycm_filetype_blacklist={
-        \ 'notes'       : 1,
-        \ 'markdown'    : 1,
-        \ 'text'        : 1,
-        \ 'conque_term' : 1,
-        \ 'gitcommit'   : 1,
-    \}
+        let g:ycm_filetype_blacklist={
+            \ 'notes'       : 1,
+            \ 'markdown'    : 1,
+            \ 'text'        : 1,
+            \ 'conque_term' : 1,
+            \ 'gitcommit'   : 1,
+        \}
+    endif
 else
     set runtimepath+=~/.vim/dfplugins/supertab
 
