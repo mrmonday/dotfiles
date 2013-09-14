@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 ###
 # Copy over config files
 #
@@ -12,7 +12,7 @@
 # Result:
 #    ln -s foobar/cf1 ~/.cf1
 #    ln -s foobar/cf2 ~/.cf2
-declare -A config_files
+typeset -A config_files
 
 config_files[X11]="Xresources"
 config_files[git]="gitconfig"
@@ -93,7 +93,7 @@ git submodule update --init --recursive
 ##
 # Prompt the user to install each config file
 ##
-for app in "${!config_files[@]}"; do
+for app in ${(k)config_files}; do
     should_install $app
     if (( $? == 1 )); then
         install_config $app
@@ -109,6 +109,7 @@ if (( $? == 1 )); then
     if [[ -e vim/plugins/YouCompleteMe ]]; then
         cd vim/plugins/YouCompleteMe
         ./install.sh --clang-completer --omnisharp-completer
+	cd -
     fi
     install_vim_plugins
     install_vim_plugin_conf
