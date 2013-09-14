@@ -63,7 +63,9 @@ set formatoptions+=o    " Automatically add comment leader on Oo
 set formatoptions+=q    " Format comments when using gq
 set formatoptions+=n    " Autoformat lists
 set formatoptions+=2    " Use indent of second line of paragraph
-set formatoptions+=j    " Remove comment leader when joining lines
+if v:version >= 704 || (v:version == 703 && has('patch541'))
+    set formatoptions+=j    " Remove comment leader when joining lines
+endif
 
 " Tab settings
 set tabstop=4
