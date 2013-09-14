@@ -48,7 +48,6 @@ noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
-" TODO Get rid of <Esc>
 
 " Indentation
 set smartindent
