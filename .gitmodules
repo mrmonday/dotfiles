@@ -16,3 +16,6 @@
 [submodule "vim/plugins/vim-colors-solarized"]
 	path = vim/plugins/vim-colors-solarized
 	url = git@github.com:altercation/vim-colors-solarized.git
+[submodule "vim/plugins/gitgutter"]
+	path = vim/plugins/gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git

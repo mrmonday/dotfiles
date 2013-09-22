@@ -172,6 +172,12 @@ if v:version >= 700
         let g:ConqueTerm_ReadUnfocused = 1
         let g:ConqueTerm_StartMessages = 0
     endif
+
+    " Git gutter
+    if has('signs')
+        set runtimepath+=~/.vim/dfplugins/gitgutter
+    endif
+
 endif
 
 " Auto-completion.
