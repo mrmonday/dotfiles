@@ -21,6 +21,32 @@ config_files[vim]="vimrc"
 cd $(dirname $0)
 
 ##
+# Create a symbolic link safely
+#
+# Params:
+#    $1 = Target name
+#    $2 = Link name
+##
+safe_make_link() {
+    target=$1
+    link_name=$2
+
+    # Delete the symlink if it already exists
+    if [[ -h $link_name ]]; then
+        rm $link_name
+    fi
+
+    # If the file already exists, back it up
+    if [[ -e $link_name ]]; then
+        echo -n "warning: $link_name already exists - backing up as $link_name.backup"
+        mv $link_name $link_name.backup
+    fi
+
+    # Create link
+    ln -s $target $link_name
+}
+
+##
 # Should config files for $1 be installed?
 #
 # Params:
@@ -49,7 +75,7 @@ should_install() {
 ##
 install_config() {
     for file in ${config_files[$1]}; do
-        ln -s `pwd`/$1/$file ~/.$file
+        safe_make_link `pwd`/$1/$file ~/.$file
     done
 }
 
@@ -62,11 +88,7 @@ install_vim_plugins() {
         target=$(pwd)/vim/plugins/$dir
         link_name=~/.vim/dfplugins/$dir
 
-        # Delete the symlink if it already exists
-        if [[ -h $link_name ]]; then
-            rm $link_name
-        fi
-        ln -s $target $link_name
+        safe_make_link "$target" "$link_name"
     done
 }
 
@@ -79,11 +101,7 @@ install_vim_plugin_conf() {
         target=$(pwd)/vim/conf/$dir
         link_name=~/.vim/dfconf/$dir
 
-        # Delete the symlink if it already exists
-        if [[ -h $link_name ]]; then
-            rm $link_name
-        fi
-        ln -s $target $link_name
+        safe_make_link $target $link_name
     done
 }
 
@@ -108,7 +126,7 @@ if (( $? == 1 )); then
     # Compile YouCompleteMe with clang and C# support
     if [[ -e vim/plugins/YouCompleteMe ]]; then
         cd vim/plugins/YouCompleteMe
-        #./install.sh --clang-completer --omnisharp-completer
+        ./install.sh --clang-completer --omnisharp-completer
         cd -
     fi
     install_vim_plugins
