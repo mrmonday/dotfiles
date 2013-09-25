@@ -109,7 +109,7 @@ if (( $? == 1 )); then
     if [[ -e vim/plugins/YouCompleteMe ]]; then
         cd vim/plugins/YouCompleteMe
         ./install.sh --clang-completer --omnisharp-completer
-	cd -
+        cd -
     fi
     install_vim_plugins
     install_vim_plugin_conf

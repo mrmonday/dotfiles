@@ -19,3 +19,6 @@
 [submodule "vim/plugins/gitgutter"]
 	path = vim/plugins/gitgutter
 	url = git@github.com:airblade/vim-gitgutter.git
+[submodule "vim/plugins/rust.vim"]
+	path = vim/plugins/rust.vim
+	url = git@github.com:wting/rust.vim.git
