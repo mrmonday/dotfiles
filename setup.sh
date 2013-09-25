@@ -108,7 +108,7 @@ if (( $? == 1 )); then
     # Compile YouCompleteMe with clang and C# support
     if [[ -e vim/plugins/YouCompleteMe ]]; then
         cd vim/plugins/YouCompleteMe
-        ./install.sh --clang-completer --omnisharp-completer
+        #./install.sh --clang-completer --omnisharp-completer
         cd -
     fi
     install_vim_plugins

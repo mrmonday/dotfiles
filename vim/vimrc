@@ -3,6 +3,9 @@ set nocompatible
 " Syntax hilighting
 set runtimepath+=~/.vim/dfplugins/vim-colors-solarized
 
+" Rust support
+set runtimepath+=~/.vim/dfplugins/rust.vim
+
 syn on
 set background=dark
 colorscheme solarized
