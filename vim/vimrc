@@ -132,6 +132,9 @@ autocmd FileType gitcommit setlocal tw=79
 " Make sure Makefiles actually work
 autocmd FileType make setl noexpandtab
 
+" Prefer markdown to modula2
+autocmd BufRead,BufNewFile *.md setl filetype=markdown
+
 " PHP Settings
 let php_sql_query = 1
 let php_htmlInStrings = 1
@@ -139,14 +142,17 @@ let php_htmlInStrings = 1
 " SQL Settings
 let g:sql_type_default = 'mysql'
 
-" Tex settings
-autocmd BufRead *.tex setl spell
-autocmd BufRead *.tex setl textwidth=79
+" Use LaTeX highlighting always
+autocmd BufRead,BufNewFile *.tex setl filetype=tex
+
+" Text file settings
+autocmd FileType tex,markdown setl spell
+autocmd FileType tex,markdown setl textwidth=79
 if exists('+colorcolumn')
-    autocmd BufRead *.tex setl colorcolumn=+1
+    autocmd FileType tex,markdown setl colorcolumn=+1
 else
     " TODO This should use tw rather than being hard coded to 79
-    autocmd BufRead,BufNewFile *.tex syntax match ErrorMsg /\%>79v.\+/
+    autocmd FileType tex,markdown syntax match ErrorMsg /\%>79v.\+/
 endif
 
 if v:version >= 700
