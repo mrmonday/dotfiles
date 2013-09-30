@@ -10,6 +10,9 @@ syn on
 set background=dark
 colorscheme solarized
 
+" Use full colour palette
+set t_Co=256
+
 " GUI stuff
 if has("gui_running")
     " Get rid of GUI crap
