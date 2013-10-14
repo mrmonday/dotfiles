@@ -102,6 +102,7 @@ set noswapfile
 
 " Allow undoing across sessions
 if has('persistent_undo')
+    set undodir=~/.vim/undofiles/
     set undofile
 endif
 
