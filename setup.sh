@@ -51,11 +51,16 @@ safe_make_link() {
 #
 # Params:
 #    $1 = Directory name/application name to prompt the user for
+#    $2 = Alternative message to print (optional)
 # Returns:
 #    1 if config files should be copied, 0 otherwise
 ##
 should_install() {
-    echo -n "Install config files for $1? [Y/n]: "
+    if [[ -n "$2" ]]; then
+        echo -n $2
+    else
+        echo -n "Install config files for $1? [Y/n]: "
+    fi
     read yn
     case $yn in
         [Nn]*)
@@ -124,10 +129,15 @@ done
 should_install 'vim plugins'
 if (( $? == 1 )); then
     # Compile YouCompleteMe with clang and C# support
-    if [[ -e vim/plugins/YouCompleteMe ]]; then
+    should_install plugin "Compile YouCompleteMe? [Y/n] "
+    if (( $? == 1 )) && [[ -e vim/plugins/YouCompleteMe ]]; then
         cd vim/plugins/YouCompleteMe
         ./install.sh --clang-completer --omnisharp-completer
         cd -
+    fi
+    should_install plugin "Install ghc-mod? [Y/n] "
+    if (( $? == 1 )); then
+        cabal install ghc-mod
     fi
     install_vim_plugins
     install_vim_plugin_conf

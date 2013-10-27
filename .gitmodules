@@ -22,3 +22,6 @@
 [submodule "vim/plugins/rust.vim"]
 	path = vim/plugins/rust.vim
 	url = git@github.com:wting/rust.vim.git
+[submodule "vim/plugins/neco-ghc"]
+	path = vim/plugins/neco-ghc
+	url = git@github.com:ujihisa/neco-ghc.git
