@@ -25,3 +25,6 @@
 [submodule "vim/plugins/neco-ghc"]
 	path = vim/plugins/neco-ghc
 	url = git@github.com:ujihisa/neco-ghc.git
+[submodule "vim/plugins/pig.vim"]
+	path = vim/plugins/pig.vim
+	url = git@github.com:motus/pig.vim.git

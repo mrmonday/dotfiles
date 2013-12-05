@@ -6,6 +6,9 @@ set runtimepath+=~/.vim/dfplugins/vim-colors-solarized
 " Rust support
 set runtimepath+=~/.vim/dfplugins/rust.vim
 
+" Pig support
+set runtimepath+=~/.vim/dfplugins/pig.vim
+
 syn on
 set background=dark
 colorscheme solarized
@@ -99,7 +102,8 @@ set wildmode=list:longest
 set wildignore+=.metadata,.classpath,.project,.settings
 set wildignore+=*.slo,*.lo,*.a,*.o,*.lai,*.a,*.dll,*.obj
 set wildignore+=*.class,*.tokens,*.aux,*.log,*.pdf,*.toc
-set wildignore+=.*.swp,.*.swo,*~,*.pyc,*.pyo,*.hi
+set wildignore+=.*.swp,.*.swo,*~,*.pyc,*.pyo,*.hi,*.bbl,*.out
+set wildignore+=*.blg,*.fdb_latexmk,*.fls
 
 " No need for a swap file
 set noswapfile
@@ -142,6 +146,9 @@ autocmd FileType make setl noexpandtab
 
 " Prefer markdown to modula2
 autocmd BufRead,BufNewFile *.md setl filetype=markdown
+
+" Couldn't find a syntax file for hive, so hilight as SQL
+autocmd BufRead,BufNewFile *.hql setl filetype=sql
 
 " PHP Settings
 let php_sql_query = 1
