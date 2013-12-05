@@ -132,11 +132,17 @@ if (( $? == 1 )); then
     should_install plugin "Compile YouCompleteMe? [Y/n] "
     if (( $? == 1 )) && [[ -e vim/plugins/YouCompleteMe ]]; then
         cd vim/plugins/YouCompleteMe
-        ./install.sh --clang-completer --omnisharp-completer
+        should_install plugin "Use system libclang? [Y/n] "
+        if (( $? == 1 )); then
+            ./install.sh --clang-completer --omnisharp-completer --system-libclang
+        else
+            ./install.sh --clang-completer --omnisharp-completer
+        fi
         cd -
     fi
     should_install plugin "Install ghc-mod? [Y/n] "
     if (( $? == 1 )); then
+        cabal update
         cabal install ghc-mod
     fi
     install_vim_plugins
