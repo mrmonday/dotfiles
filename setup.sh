@@ -18,6 +18,11 @@ config_files[X11]="Xresources"
 config_files[git]="gitconfig"
 config_files[vim]="vimrc"
 
+# As above, but for directories in ~/.config/
+typeset -A config_dirs
+
+config_dirs[awesome]="awesome"
+
 cd $(dirname $0)
 
 ##
@@ -38,7 +43,7 @@ safe_make_link() {
 
     # If the file already exists, back it up
     if [[ -e $link_name ]]; then
-        echo -n "warning: $link_name already exists - backing up as $link_name.backup"
+        echo "warning: $link_name already exists - backing up as $link_name.backup"
         mv $link_name $link_name.backup
     fi
 
@@ -85,6 +90,18 @@ install_config() {
 }
 
 ##
+# Install configuration directories for $1
+#
+# Params:
+#    $1 = Application to install ~/.config/ directories for
+##
+install_config_dir() {
+    for dir in ${config_dirs[$1]}; do
+        safe_make_link `pwd`/$dir ~/.config/$dir
+    done
+}
+
+##
 # Install vim plugins
 ##
 install_vim_plugins() {
@@ -120,6 +137,13 @@ for app in ${(k)config_files}; do
     should_install $app
     if (( $? == 1 )); then
         install_config $app
+    fi
+done
+
+for app in ${(k)config_dirs}; do
+    should_install $app
+    if (( $? == 1 )); then
+        install_config_dir $app
     fi
 done
 
