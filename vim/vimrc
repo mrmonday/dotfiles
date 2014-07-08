@@ -16,6 +16,8 @@ colorscheme solarized
 " Use full colour palette
 set t_Co=256
 
+set term=rxvt-unicode
+
 " GUI stuff
 if has("gui_running")
     " Get rid of GUI crap
@@ -119,9 +121,6 @@ set shortmess+=I
 
 " Don't redraw during macros
 set lazyredraw
-
-" Don't mess up formatting when pasting
-set paste
 
 " Make the delay for Insert -> Command less noticable
 " Eg. Multi-line editing and <Esc>O
