@@ -157,13 +157,13 @@ let php_sql_query = 1
 let php_htmlInStrings = 1
 
 " Rust settings
-autocmd FileType tex,markdown setl spell
-autocmd FileType tex,markdown setl textwidth=99
+autocmd FileType rust setl spell
+autocmd FileType rust setl textwidth=99
 if exists('+colorcolumn')
-    autocmd FileType tex,markdown setl colorcolumn=+1
+    autocmd FileType rust setl colorcolumn=+1
 else
     " TODO This should use tw rather than being hard coded
-    autocmd FileType tex,markdown syntax match ErrorMsg /\%>99v.\+/
+    autocmd FileType rust syntax match ErrorMsg /\%>99v.\+/
 endif
 
 " SQL Settings
