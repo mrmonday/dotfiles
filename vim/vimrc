@@ -157,7 +157,6 @@ let php_sql_query = 1
 let php_htmlInStrings = 1
 
 " Rust settings
-autocmd FileType rust setl spell
 autocmd FileType rust setl textwidth=99
 if exists('+colorcolumn')
     autocmd FileType rust setl colorcolumn=+1
