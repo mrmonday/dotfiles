@@ -9,6 +9,11 @@ set runtimepath+=~/.vim/dfplugins/rust.vim
 " Pig support
 set runtimepath+=~/.vim/dfplugins/pig.vim
 
+" Toggle filetype - Makes sure the correct filetypes are detected under some
+" weird configs
+filetype off
+filetype on
+
 syn on
 set background=dark
 colorscheme solarized
@@ -17,6 +22,10 @@ colorscheme solarized
 set t_Co=256
 
 set term=rxvt-unicode
+
+" Remap F1 to Esc
+map <F1> <Esc>
+imap <F1> <Esc>
 
 " GUI stuff
 if has("gui_running")
@@ -27,10 +36,6 @@ if has("gui_running")
     set mousemodel=popup_setpos
 
     "set columns=100
-
-    " Remap F1 to Esc
-    map <F1> <Esc>
-    imap <F1> <Esc>
 
     " Windows specific settings
     if has('win32')
