@@ -28,3 +28,6 @@
 [submodule "vim/plugins/pig.vim"]
 	path = vim/plugins/pig.vim
 	url = git@github.com:motus/pig.vim.git
+[submodule "vim/plugins/idris-vim"]
+	path = vim/plugins/idris-vim
+	url = https://github.com/idris-hackers/idris-vim.git

@@ -3,6 +3,9 @@ set nocompatible
 " Syntax hilighting
 set runtimepath+=~/.vim/dfplugins/vim-colors-solarized
 
+" Idris support
+set runtimepath+=~/.vim/dfplugins/idris-vim
+
 " Rust support
 set runtimepath+=~/.vim/dfplugins/rust.vim
 
@@ -57,6 +60,9 @@ set number
 set numberwidth=3
 set ruler
 set showcmd
+
+" Language
+set spelllang=en_gb,en
 
 " Learn to vim properly
 set mouse=a " I failed.

@@ -104,5 +104,5 @@ urxvt.scrollBar: false
 urxvt.intensityStyles: false
 urxvt.allow_bold: false
 urxvt.perl-ext-common: default,matcher
-urxvt.url-launcher: /usr/bin/chromium
+urxvt.url-launcher: /usr/bin/firefox
 urxvt.matcher.button: 1
