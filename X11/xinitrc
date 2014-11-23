@@ -1,0 +1,9 @@
+setxkbmap gb
+
+xrdb -merge ~/.Xresources
+
+redshift -l 55.8:-4.3 &
+cbatticon &
+xscreensaver -no-splash &
+
+exec awesome

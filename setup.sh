@@ -6,6 +6,8 @@
 #   Robert Clipsham <robert@octarineparrot.com>
 ###
 
+set -x
+
 # AA of config files
 # Example:
 #    config_files[foobar]="cf1 cf2"
@@ -14,7 +16,7 @@
 #    ln -s foobar/cf2 ~/.cf2
 typeset -A config_files
 
-config_files[X11]="Xresources"
+config_files[X11]="Xresources xinitrc"
 config_files[git]="gitconfig"
 config_files[vim]="vimrc"
 
@@ -32,9 +34,9 @@ cd $(dirname $0)
 #    $1 = Target name
 #    $2 = Link name
 ##
-safe_make_link() {
-    target=$1
-    link_name=$2
+function safe_make_link() {
+    local target=$1
+    local link_name=$2
 
     # Delete the symlink if it already exists
     if [[ -h $link_name ]]; then
@@ -60,7 +62,7 @@ safe_make_link() {
 # Returns:
 #    1 if config files should be copied, 0 otherwise
 ##
-should_install() {
+function should_install() {
     if [[ -n "$2" ]]; then
         echo -n $2
     else
@@ -83,8 +85,8 @@ should_install() {
 # Params:
 #    $1 = Directory/application name to install config files for
 ##
-install_config() {
-    for file in ${config_files[$1]}; do
+function install_config() {
+    for file in ${(s/ /)config_files[$1]}; do
         safe_make_link `pwd`/$1/$file ~/.$file
     done
 }
@@ -95,8 +97,8 @@ install_config() {
 # Params:
 #    $1 = Application to install ~/.config/ directories for
 ##
-install_config_dir() {
-    for dir in ${config_dirs[$1]}; do
+function install_config_dir() {
+    for dir in ${(s/ /)config_dirs[$1]}; do
         safe_make_link `pwd`/$dir ~/.config/$dir
     done
 }
@@ -104,11 +106,11 @@ install_config_dir() {
 ##
 # Install vim plugins
 ##
-install_vim_plugins() {
+function install_vim_plugins() {
     mkdir -p ~/.vim/dfplugins/
     for dir in $(ls vim/plugins); do
-        target=$(pwd)/vim/plugins/$dir
-        link_name=~/.vim/dfplugins/$dir
+        local target=$(pwd)/vim/plugins/$dir
+        local link_name=~/.vim/dfplugins/$dir
 
         safe_make_link "$target" "$link_name"
     done
@@ -117,11 +119,11 @@ install_vim_plugins() {
 ##
 # Install vim plugin configuration
 ##
-install_vim_plugin_conf() {
+function install_vim_plugin_conf() {
     mkdir -p ~/.vim/dfconf/
     for dir in $(ls vim/conf); do
-        target=$(pwd)/vim/conf/$dir
-        link_name=~/.vim/dfconf/$dir
+        local target=$(pwd)/vim/conf/$dir
+        local link_name=~/.vim/dfconf/$dir
 
         safe_make_link $target $link_name
     done
@@ -155,12 +157,17 @@ if (( $? == 1 )); then
     # Compile YouCompleteMe with clang and C# support
     should_install plugin "Compile YouCompleteMe? [Y/n] "
     if (( $? == 1 )) && [[ -e vim/plugins/YouCompleteMe ]]; then
+        if [[ -n $(which xbuild) || -n $(which msbuild) ]]; then
+            local ycm_flags="--omnisharp-completer"
+        else
+            local ycm_flags=""
+        fi
         cd vim/plugins/YouCompleteMe
         should_install plugin "Use system libclang? [Y/n] "
         if (( $? == 1 )); then
-            ./install.sh --clang-completer --omnisharp-completer --system-libclang
+            ./install.sh --clang-completer $ycm_flags --system-libclang
         else
-            ./install.sh --clang-completer --omnisharp-completer
+            ./install.sh --clang-completer $ycm_flags
         fi
         cd -
     fi
