@@ -16,6 +16,7 @@ set runtimepath+=~/.vim/dfplugins/pig.vim
 " weird configs
 filetype off
 filetype on
+filetype plugin indent on
 
 syn on
 set background=dark
