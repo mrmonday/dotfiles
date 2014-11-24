@@ -96,7 +96,13 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
+powermenu = {
+   { "shutdown", "poweroff" },
+   { "reboot", "reboot" }
+}
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "power", powermenu },
                                     { "open terminal", terminal }
                                   }
                         })
