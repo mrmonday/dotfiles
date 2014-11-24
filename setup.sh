@@ -6,8 +6,6 @@
 #   Robert Clipsham <robert@octarineparrot.com>
 ###
 
-set -x
-
 # AA of config files
 # Example:
 #    config_files[foobar]="cf1 cf2"
@@ -18,12 +16,14 @@ typeset -A config_files
 
 config_files[X11]="Xresources xinitrc"
 config_files[git]="gitconfig"
+config_files[gtk2]="gtkrc-2.0"
 config_files[vim]="vimrc"
 
 # As above, but for directories in ~/.config/
 typeset -A config_dirs
 
 config_dirs[awesome]="awesome"
+config_dirs[gtk3]="gtk-3.0"
 
 cd $(dirname $0)
 
