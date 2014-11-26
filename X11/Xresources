@@ -99,7 +99,6 @@ urxvt*color13:                 S_violet
 urxvt*color14:                 S_base1
 urxvt*color15:                 S_base3
 
-urxvt*termName: rxvt-256color
 urxvt.scrollBar: false
 urxvt.intensityStyles: false
 urxvt.allow_bold: false
