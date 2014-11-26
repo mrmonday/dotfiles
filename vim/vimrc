@@ -113,6 +113,7 @@ set smartcase
 " Better tab complete for files
 set wildmenu
 set wildmode=list:longest
+set wildignorecase
 set wildignore+=.metadata,.classpath,.project,.settings
 set wildignore+=*.slo,*.lo,*.a,*.o,*.lai,*.a,*.dll,*.obj
 set wildignore+=*.class,*.tokens,*.aux,*.log,*.pdf,*.toc
