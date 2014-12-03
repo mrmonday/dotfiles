@@ -130,7 +130,8 @@ function install_vim_plugin_conf() {
 }
 
 echo Updating submodules...
-git submodule update --init --recursive
+git submodule sync
+git submodule update --init --recursive --remote --merge
 
 ##
 # Prompt the user to install each config file
