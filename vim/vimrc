@@ -89,6 +89,9 @@ if v:version >= 704 || (v:version == 703 && has('patch541'))
     set formatoptions+=j    " Remove comment leader when joining lines
 endif
 
+" Use a single space when joining at the end of a sentence
+set nojoinspaces
+
 " Tab settings
 set tabstop=4
 set shiftwidth=4

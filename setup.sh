@@ -154,6 +154,9 @@ done
 ##
 should_install 'vim plugins'
 if (( $? == 1 )); then
+    # FIXME This should really be done when installing vim config, not here
+    mkdir -p ~/.vim/undofiles/
+
     # Compile YouCompleteMe with clang and C# support
     should_install plugin "Compile YouCompleteMe? [Y/n] "
     if (( $? == 1 )) && [[ -e vim/plugins/YouCompleteMe ]]; then
