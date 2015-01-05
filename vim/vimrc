@@ -22,6 +22,9 @@ syn on
 set background=dark
 colorscheme solarized
 
+" Used for gitgutter
+highlight clear SignColumn
+
 " Use full colour palette
 set t_Co=256
 
@@ -121,7 +124,7 @@ set wildignore+=.metadata,.classpath,.project,.settings
 set wildignore+=*.slo,*.lo,*.a,*.o,*.lai,*.a,*.dll,*.obj
 set wildignore+=*.class,*.tokens,*.aux,*.log,*.pdf,*.toc
 set wildignore+=.*.swp,.*.swo,*~,*.pyc,*.pyo,*.hi,*.bbl,*.out
-set wildignore+=*.blg,*.fdb_latexmk,*.fls
+set wildignore+=*.blg,*.fdb_latexmk,*.fls,*.ibc
 
 " No need for a swap file
 set noswapfile
