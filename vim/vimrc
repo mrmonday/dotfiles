@@ -206,11 +206,15 @@ if v:version >= 700
     let g:syntastic_check_on_open=1
     let g:syntastic_auto_loc_list=1
     let g:syntastic_loc_list_height=3
+    " lacheck is dumb
+    let g:syntastic_tex_checkers = [ "chktex" ]
 
     " Autocomplete for java
     set runtimepath+=~/.vim/dfplugins/javacomplete
     autocmd FileType java setlocal omnifunc=javacomplete#Complete
     autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
+    let g:syntastic_java_javac_custom_classpath_command =
+    \ "find ~/.gradle -name '*.jar'"
 
     " Autocomplete for Haskell
     normal !type ghc-mod >/dev/null 2>&1
