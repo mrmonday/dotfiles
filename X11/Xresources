@@ -105,3 +105,5 @@ urxvt.allow_bold: false
 urxvt.perl-ext-common: default,matcher
 urxvt.url-launcher: /usr/bin/firefox
 urxvt.matcher.button: 1
+urxvt.font: xft:Inconsolata:size=10
+urxvt.letterSpace: -1
