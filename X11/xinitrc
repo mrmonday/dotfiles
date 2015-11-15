@@ -2,6 +2,10 @@ setxkbmap gb
 
 xrdb -merge ~/.Xresources
 
+# Disable forward/back keys
+xmodmap -e 'keycode 166='
+xmodmap -e 'keycode 167='
+
 redshift -l 55.8:-4.3 &
 cbatticon &
 xscreensaver -no-splash &

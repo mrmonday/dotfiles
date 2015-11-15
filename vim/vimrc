@@ -28,7 +28,14 @@ highlight clear SignColumn
 " Use full colour palette
 set t_Co=256
 
+" Disable beeping/flashing on <Esc> in normal mode
+set noerrorbells
+set vb t_vb=
+
 set term=rxvt-unicode
+
+" Smoother interface
+set ttyfast
 
 " Remap F1 to Esc
 map <F1> <Esc>
@@ -57,7 +64,7 @@ if has("gui_running")
 endif
 
 " Line endings
-set fileformats=unix,dos
+set fileformats=unix,dos,mac
 
 " Line numbers/status
 set number
@@ -74,6 +81,8 @@ noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
+" Disable ex mode.
+noremap Q <nop>
 
 " Indentation
 set smartindent
@@ -130,6 +139,7 @@ set wildignore+=*.blg,*.fdb_latexmk,*.fls,*.ibc
 set noswapfile
 
 " Allow undoing across sessions
+" NOTE: This doesn't work unless the directory exists
 if has('persistent_undo')
     set undodir=~/.vim/undofiles/
     set undofile
@@ -159,8 +169,15 @@ command! -bang Qa qa<bang>
 set pumheight=7
 set completeopt=longest,menu,preview
 
+" Show the cursor line in insert mode only
+autocmd InsertLeave * set nocursorline
+autocmd InsertEnter * set cursorline
+
 " Git commit settings
 autocmd FileType gitcommit setlocal tw=79
+
+" Idris settings
+autocmd FileType idris set sts=2 ts=2 sw=2
 
 " Make sure Makefiles actually work
 autocmd FileType make setl noexpandtab
