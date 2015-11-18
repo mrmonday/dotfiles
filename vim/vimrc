@@ -8,6 +8,7 @@ set runtimepath+=~/.vim/dfplugins/idris-vim
 
 " Rust support
 set runtimepath+=~/.vim/dfplugins/rust.vim
+set runtimepath+=~/.vim/dfplugins/vim-racer
 
 " Pig support
 set runtimepath+=~/.vim/dfplugins/pig.vim
@@ -200,6 +201,8 @@ else
     " TODO This should use tw rather than being hard coded
     autocmd FileType rust syntax match ErrorMsg /\%>99v.\+/
 endif
+let g:racer_cmd = "~/.multirust/cargo/bin/racer"
+let $RUST_SRC_PATH = $HOME . "/rust/src"
 
 " SQL Settings
 let g:sql_type_default = 'mysql'
@@ -270,6 +273,9 @@ if v:version >= 704 || (v:version == 703 && has('patch584'))
     if has('python')
         set runtimepath+=~/.vim/dfplugins/YouCompleteMe
         let g:ycm_global_ycm_extra_conf = '~/.vim/dfconf/YouCompleteMe/ycm_global.py'
+
+        " Make sure Rust gets completed
+        let g:ycm_semantic_triggers = { 'rust' : ['.', '::'] }
 
         let g:ycm_filetype_blacklist={
             \ 'notes'       : 1,
