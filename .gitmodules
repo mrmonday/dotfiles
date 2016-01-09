@@ -31,6 +31,3 @@
 [submodule "vim/plugins/idris-vim"]
 	path = vim/plugins/idris-vim
 	url = https://github.com/idris-hackers/idris-vim.git
-[submodule "vim/plugins/vim-racer"]
-	path = vim/plugins/vim-racer
-	url = https://github.com/racer-rust/vim-racer

@@ -8,7 +8,6 @@ set runtimepath+=~/.vim/dfplugins/idris-vim
 
 " Rust support
 set runtimepath+=~/.vim/dfplugins/rust.vim
-set runtimepath+=~/.vim/dfplugins/vim-racer
 
 " Pig support
 set runtimepath+=~/.vim/dfplugins/pig.vim
@@ -201,8 +200,7 @@ else
     " TODO This should use tw rather than being hard coded
     autocmd FileType rust syntax match ErrorMsg /\%>99v.\+/
 endif
-let g:racer_cmd = "~/.multirust/cargo/bin/racer"
-let $RUST_SRC_PATH = $HOME . "/rust/src"
+let g:ycm_rust_src_path = $HOME . "/rust/src"
 
 " SQL Settings
 let g:sql_type_default = 'mysql'

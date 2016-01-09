@@ -166,12 +166,22 @@ if (( $? == 1 )); then
         else
             local ycm_flags=""
         fi
+        if [[ -n $(which rustc) ]]; then
+            ycm_flags="$ycm_flags --racer-completer"
+        fi
+
+        if [[ -n $(which python2) ]]; then
+            local python="python2"
+        else
+            local python="python"
+        fi
+
         cd vim/plugins/YouCompleteMe
         should_install plugin "Use system libclang? [Y/n] "
         if (( $? == 1 )); then
-            ./install.sh --clang-completer $ycm_flags --system-libclang
+            $python ./install.py --clang-completer $ycm_flags --system-libclang
         else
-            ./install.sh --clang-completer $ycm_flags
+            $python ./install.py --clang-completer $ycm_flags
         fi
         cd -
     fi
